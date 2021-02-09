@@ -6,12 +6,22 @@ public class Product {
     private String mTitle;
     private int mImageId;
     private float mPrice;
+    private int mStock;
 
-    public Product(int id, String title, int imageId, float price) {
+    public Product(int id, String title, int imageId, float price, int stock) {
         this.mId = id;
         this.mTitle = title;
         this.mPrice = price;
         this.mImageId = imageId;
+        mStock = stock;
+    }
+
+    public int getStock() {
+        return mStock;
+    }
+
+    public void setStock(int stock) {
+        this.mStock = stock;
     }
 
     public int getId() {

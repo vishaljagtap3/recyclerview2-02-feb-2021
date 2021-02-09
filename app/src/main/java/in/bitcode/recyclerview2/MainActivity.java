@@ -29,22 +29,22 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         {
             mListProducts = new ArrayList<>();
-            mListProducts.add(new Product(1, "1Laptop", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(2, "2Projector", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(3, "3Camera", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "4Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "5Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "6Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "7Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "8Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "9Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "10Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "11Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "12Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "13Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "14Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "15Phone", R.mipmap.ic_launcher, 1234.34f));
-            mListProducts.add(new Product(4, "16Phone", R.mipmap.ic_launcher, 1234.34f));
+            mListProducts.add(new Product(1, "1Laptop", R.mipmap.ic_launcher, 1234.34f, 10));
+            mListProducts.add(new Product(2, "2Projector", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(3, "3Camera", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(4, "4Phone", R.mipmap.ic_launcher, 1234.34f, 12));
+            mListProducts.add(new Product(4, "5Phone", R.mipmap.ic_launcher, 1234.34f, 12));
+            mListProducts.add(new Product(4, "6Phone", R.mipmap.ic_launcher, 1234.34f, 89));
+            mListProducts.add(new Product(4, "7Phone", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(4, "8Phone", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(4, "9Phone", R.mipmap.ic_launcher, 1234.34f, 11));
+            mListProducts.add(new Product(4, "10Phone", R.mipmap.ic_launcher, 1234.34f, 9));
+            mListProducts.add(new Product(4, "11Phone", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(4, "12Phone", R.mipmap.ic_launcher, 1234.34f, 60));
+            mListProducts.add(new Product(4, "13Phone", R.mipmap.ic_launcher, 1234.34f, 50));
+            mListProducts.add(new Product(4, "14Phone", R.mipmap.ic_launcher, 1234.34f, 0));
+            mListProducts.add(new Product(4, "15Phone", R.mipmap.ic_launcher, 1234.34f, 11));
+            mListProducts.add(new Product(4, "16Phone", R.mipmap.ic_launcher, 1234.34f, 11));
 
         }
         mRecyclerProducts = findViewById(R.id.recyclerProducts);
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerProducts.setAdapter(mAdapterProducts);
 
         mAdapterProducts.setOnProductClickListener(new MyOnProductClickListener());
+        //mAdapterProducts.notifyItemChanged();
 
     }
 

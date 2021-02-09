@@ -19,13 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ProductViewHolder> {
 
     private ArrayList<Product> mListProducts;
+
     public AdapterProducts(ArrayList<Product> listProducts) {
         this.mListProducts = listProducts;
     }
 
 
-    public interface  OnProductClickListener {
+    public interface OnProductClickListener {
         public void onProductImageClick(AdapterProducts adapterProducts, Product product, int position, ImageView imgProduct);
+
         public void onProductTitleClick(AdapterProducts adapterProducts, Product product, int position, TextView txtProductTitle);
     }
 
@@ -39,35 +41,15 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.Produc
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.product, null);
-
-        return new ProductViewHolder(view);
+        ProductView productView = new ProductView(parent.getContext());
+        return new ProductViewHolder(productView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
 
         Product product = mListProducts.get(position);
-
-        holder.mImgProduct.setImageResource(product.getImageId());
-        holder.mTxtProductName.setText(product.getTitle());
-
-        //Not a good place to attach listeners
-        /*
-        holder.mImgProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mt(view.getContext(), "Image " + position  +" Clicked");
-            }
-        });
-        holder.mTxtProductName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mt(view.getContext(), mListProducts.get(position).getTitle() + " " + position  +" Clicked");
-            }
-        });
-         */
+        holder.mProductView.setProduct(product);
 
     }
 
@@ -78,56 +60,12 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.Produc
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView mImgProduct;
-        public TextView mTxtProductName;
+       public ProductView mProductView;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mImgProduct = itemView.findViewById(R.id.imgProduct);
-            mTxtProductName = itemView.findViewById(R.id.txtProductName);
-
-            mImgProduct.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(mOnProductClickListener != null) {
-                        mOnProductClickListener.onProductImageClick(
-                                AdapterProducts.this,
-                                mListProducts.get(getAdapterPosition()),
-                                getAdapterPosition(),
-                                mImgProduct
-                        );
-                    }
-
-                    /*
-                    mt(view.getContext(), "Image " + getAdapterPosition() + " Clicked");
-                    //mt(view.getContext(), "Image " + " Clicked");
-                    */
-
-                }
-            });
-            mTxtProductName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(mOnProductClickListener != null) {
-                        mOnProductClickListener.onProductTitleClick(
-                                AdapterProducts.this,
-                                mListProducts.get(getAdapterPosition()),
-                                getAdapterPosition(),
-                                mTxtProductName
-                        );
-                    }
-
-                    /*
-                    mt(view.getContext(), mListProducts.get(getAdapterPosition()).getTitle() + " " + getAdapterPosition() + " Clicked");
-                    //mt(view.getContext(), "Product Name clicked");
-                    ms(view, mListProducts.get(getAdapterPosition()).getTitle() + " " + getAdapterPosition() + " Clicked");
-                    */
-
-                }
-            });
+            mProductView = (ProductView)itemView;
 
         }
     }
